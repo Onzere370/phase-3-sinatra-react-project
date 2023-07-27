@@ -11,6 +11,11 @@ class ApplicationController < Sinatra::Base
     products.to_json
   end
 
+  get "/products/:id" do
+    product = Product.find(params[:id])
+    product.to_json
+  end
+
   post '/products' do
     product = Product.create(name: params[:name], price: params[:price], image: params[:image])
     product.to_json
@@ -31,6 +36,19 @@ class ApplicationController < Sinatra::Base
       { message: "Product deleted" }.to_json
     else
       { message: "Unable to delete" }.to_json
+    end
+  end
+
+  patch "/products/:id" do
+    product = Product.find(params[:id])
+    product.name = params[:name] if params[:name]
+    product.price = params[:price] if params[:price]
+    product.image = params[:image] if params[:image]
+
+    if product.save
+      { message: "Product updated successfully" }.to_json
+    else
+      { message: "Unable to update" }.to_json
     end
   end
 
