@@ -19,4 +19,4 @@ POST /categories: Create a new category.
 PUT /categories/:id: Update a specific category by ID.
 DELETE /categories/:id: Delete a specific category by ID.
 
-This is the frontend repository link for the Chicken Lunchbox project https://github.com/Onzere370/Phase-3-project.git
+This is the frontend repository link for my project https://github.com/Onzere370/Phase-3-project.git
