@@ -15,11 +15,18 @@ class ApplicationController < Sinatra::Base
     product = Product.find(params[:id])
     product.to_json
   end
-
   post '/products' do
-    product = Product.create(name: params[:name], price: params[:price], image: params[:image])
-    category_id: params[:category_id]
-    product.to_json
+    product = Product.create(
+      name: params[:name],
+      price: params[:price],
+      image: params[:image],
+      category_id: params[:category_id]
+    )
+    if product.save
+      product.to_json
+    else
+      { message: "Unable to create product" }.to_json
+    end
   end
 
   put "/products/:id" do
